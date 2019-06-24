@@ -1,0 +1,155 @@
+h2, .h2 {
+    font-size: 1.5rem;
+}
+.martop20px {
+  margin-top: 20px;
+}
+.martop40px {
+  margin-top: 40px;
+}
+.padding-bottom-20px {
+  padding-bottom: 20px;
+}
+.padding-top-20px{
+  padding-top: 20px;
+}
+.padding-top-30px{
+  padding-top: 30px;
+}
+.margin-top-30px{
+  margin-top: 30px;
+}
+.padding-top-25px{
+  padding-top: 25px;
+}
+.no-padlrt {
+  padding-left:0;
+  padding-right: 0;
+}
+
+
+/** button **/
+.btn-group ul.dropdown-menu {
+    width: 250px;
+    max-height: 250px;
+    overflow: auto;
+}
+a.btn {
+    margin: 2px;
+}
+.btn, a {
+  cursor: pointer;
+  a:hover{
+    text-decoration: none;
+  }
+}
+body.fixed-nav {
+  padding-top: 56px;
+}
+.content-wrapper {
+  min-height: calc(100vh - 56px);
+  padding-top: 1rem;
+  overflow-x: hidden;
+  background: white;
+}
+ .fixed-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+}
+
+/** Profile **/
+.profile {
+      float: right;
+    right: 0;
+    position: absolute;
+    top: 10px;
+    font-size: 14px;
+    color: #fff;
+  .btn {
+    border: 0;
+    border-radius: 0;
+  }
+  button {
+    font-family: "Lato-Regular";
+    background-color: transparent;
+    outline:0;
+  }
+  .dropdown-item {
+    &:hover, &:focus {
+      color: #fff;
+      background-color: #0f0740;;
+    }
+  }
+}
+
+
+/** Footer Section **/
+footer {
+    background-color: #fff;
+    padding-top: 18px;
+    // position: fixed;
+    // bottom: 0;
+    // width: 100%;
+    z-index: 999;
+
+    p {
+        font-size: 12px;
+        line-height: 22px;
+        color: #42484d;
+    }
+    .footer-content {
+        p {
+            display: inline-block;
+            padding-left: 30px;
+        }
+    }
+    .footer-text {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+
+
+
+/** Responsive **/
+
+@media (min-width: 1001px) {
+    nav .navbar-nav li.nav-item {
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    .nav-link{
+      outline: none;
+    }
+  }  
+}
+@media (min-width: 1400px) {
+  nav .navbar-nav li.nav-item {
+      padding: 0 22px;
+      border: none;
+      outline: none;
+      .nav-link{
+        outline: none;
+      }
+  }
+} 
+
+/** sweet alert **/
+.sweet-overlay{
+  z-index: 1060;
+}
+
+
+.limb-header {
+
+  .logged-user #user{
+    color: #fff;
+  }
+  // #navbarSupportedContent .dropdown-menu{
+  //   left: -60px;
+  // }
+}

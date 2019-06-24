@@ -1,0 +1,17 @@
+.login-form-wrapper {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  left: 10px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin: auto;
+}
+
+.card-login {
+max-width: 30rem;
+}
+
+.card-header span{  
+  font-weight: bold;  
+}

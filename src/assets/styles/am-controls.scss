@@ -1,0 +1,102 @@
+// Import Bootstrap parts
+@import "../../../node_modules/bootstrap/scss/variables";
+
+// Import "include-media"
+@import "../../../node_modules/include-media/dist/include-media";
+
+// 'include-media' plugging into Bootstrap 4's Grid Breakpoints map
+$breakpoints: $grid-breakpoints;
+$gray-lighter : #eceeef !default;
+body {
+  //font-family: "SQMarket", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Open Sans",sans-serif;
+}
+
+fieldset {
+  padding-bottom: 1rem;
+  margin: 1rem 0;
+  border-bottom: solid 1px $gray-lighter;
+
+  legend {
+    font-weight: 200;
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+}
+
+.am-styled-column {
+  .am-styled-column-text {
+    display: block;
+    >i {
+      margin-right: 0.25rem;
+    }
+  }
+
+  .am-styled-column-sub-text {
+    display: inline-block;
+    font-size: 0.80rem;
+  }
+
+  .am-styled-column-tags {
+    &.badge {
+      margin-right: 0.25rem;
+    }
+  }
+}
+
+
+
+.am-filter-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.am-filter-dropdown{
+
+//   .dropdown-item.active, .dropdown-item:active{
+//     color:#fff;
+//   }
+  // .dropdown-menu{
+  //   li a{
+  //     color: #000;      
+  //   }
+  //   li a:hover{
+  //     color: #000;
+  //     text-decoration: none;
+  //   }
+  //   // li a:active{
+  //   //   color: #fff;
+  //   // }
+  // }
+}
+
+@include media(">=xs") {
+  .am-filter-search, .am-filter-dropdown {
+    width: 100%;
+    margin: 0 5px 10px 5px;
+
+    button {
+      width: 100%;
+    }
+  }
+  .am-filter-new-button {
+    width: 100%;
+    margin: 0 5px 10px 5px;
+  }
+}
+
+@include media(">=sm") {
+  .am-filter-control {
+    float: left;
+  }
+  .am-filter-search {
+    width: 300px;
+  }
+  .am-filter-dropdown {
+    width: inherit;
+  }
+  .am-filter-new-button {
+    width: inherit;
+  }
+}

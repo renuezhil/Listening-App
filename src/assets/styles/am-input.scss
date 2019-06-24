@@ -1,0 +1,91 @@
+$black:  #000 !default;
+$gray-lighter : #eceeef !default;
+$input-border-color: rgba($black,.15) !default;
+
+$placeholder-font-color: darken($gray-lighter, 10%);
+
+select.form-control {
+  border-radius: 0.15rem;
+  appearance: none;
+  background-image: url("assets/images/down_arrow.png");
+  background-repeat:no-repeat;
+  background-position: center right .5625rem;
+  //line-height: 2.2rem;
+}
+
+.select2, .select2-results__option {
+  font-size: 0.8rem;
+}
+
+.select2-container--default {
+  .select2-selection--multiple {
+    border-color: $input-border-color;
+
+    .select2-selection__choice {
+      border-radius: 0.15rem;
+      background-color: $gray-lighter;
+    }
+  }
+
+  &.select2-container--focus {
+    .select2-selection--multiple {
+      border-color: $input-border-color;
+    }
+  }
+}
+
+.control-label, .form-text, .form-control-feedback {
+  font-size: 0.75rem;
+  //padding-left: 0.20rem;
+}
+
+
+.control-label .required, .form-group .required{
+    color: #e02222;
+    font-size: 12px;
+    padding-left: 2px;
+}
+
+
+.control-label {
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  margin-top: 1px;
+  font-size: 12px;
+  text-color: #002211 !important;
+}
+
+.has-error {
+    .control-label, .help-block, .form-control-feedback{
+       color: #e73d4a;
+    }
+   .form-control{
+      border-color: #e73d4a !important;
+    }
+}
+
+.form-control {
+  font-family: "Open Sans",sans-serif;
+  font-size: 13px; //0.8rem;
+  line-height: 1.2rem;
+  border-radius: 0.15rem;
+  border: 1px solid #333 !important;
+
+  &::placeholder {
+    color: $placeholder-font-color;
+    font-family: "Open Sans",sans-serif;
+    font-size: 13px; //0.8rem;
+    font-weight: 200;
+  }
+}
+
+.input-group-addon:not(:first-child) {
+  border-top-right-radius: 0.15rem;
+  border-bottom-right-radius: 0.15rem;
+}
+
+.pagination .page-item.active .page-link:hover{
+  color: #fff;
+}
+
+

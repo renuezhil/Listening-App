@@ -1,0 +1,54 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary limb-header">
+    <a class="navbar-brand" href="#">Listening App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" [routerLinkActive]="['active']" data-toggle="tooltip" data-placement="right" title="" data-original-title="Home">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="showOptions()" [routerLinkActive]="['active']" data-toggle="tooltip" data-placement="right" title="" data-original-title="User">
+          <a class="nav-link" href="#" [routerLink]="['/super-admin/user']">User</a>
+        </li> -->
+        <li class="nav-item" *ngIf="showOptions()" [routerLinkActive]="['active']" data-toggle="tooltip" data-placement="right" title="" data-original-title="User">
+          <a class="nav-link" href="#" [routerLink]="['/super-admin/dicom']">User</a>
+        </li>
+      </ul>
+      <div class="nav-item dropdown logged-user">
+        <a class="nav-link dropdown-toggle" id="user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{profileName}}
+              </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['/super-admin/profile']">My Profile</a>
+          <a class="dropdown-item" [routerLink]="['/super-admin/change-password']">Change Password</a>
+          <a class="dropdown-item" (click)="onLogoutUser()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+<!-- <footer>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="footer-content">
+          <p>Wears Valley &copy; 2018. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="footer-text">
+          <p class="mrg-rgt40px">Privacy Policy</p>
+          <p>Terms & Conditions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
