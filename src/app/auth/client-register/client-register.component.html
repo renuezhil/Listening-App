@@ -1,0 +1,115 @@
+ 
+                    <!-- register tab -->
+                    <div id="login" class="tabcontent tab-default-open animation: uk-animation-slide-right-medium"> 
+                        <h2 class="uk-text-bold"> Register </h2>
+                        <p class="uk-text-muted uk-margin-remove-top uk-margin-small-bottom"> Create your free account</p>
+                        <form #form="ngForm" name="addForm" novalidate>  
+                        <div class="uk-form-label">First Name *</div>
+                        <div class="uk-inline">
+                            <span class="uk-form-icon"><i class="far fa-User icon-medium"></i></span>                       
+                            <input type="text" [disabled]="disabled==true" class="uk-input uk-form-width-large" id="txtfirstname" placeholder="First Name" [(ngModel)]="newadd.firstname"
+                            name="txtfirstname" firstname required autofocus ngModel #firstname="ngModel"  >
+                            <div>
+                        <small class="help-bpx" style="color: red;font-weight:bold;" *ngIf="firstname.touched && !firstname.valid  ">First Name is required</small>
+                      </div>
+                          </div>
+                        <div class="uk-form-label">Last Name *</div>
+                        <div class="uk-inline">
+                            <span class="uk-form-icon"><i class="far fa-User icon-medium"></i></span> 
+                            <input class="uk-input uk-form-width-large" placeholder="Last Name" id="txtlastname" name="txtlastname" type="text"
+                            [(ngModel)]="newadd.lastname"  lastname required autofocus ngModel #lastname="ngModel">
+                            <div>
+                                <small class="help-bpx" style="color: red;font-weight:bold;" *ngIf="lastname.touched && !lastname.valid  ">Last Name is required</small>
+                              </div>
+                          </div>
+                     
+                        <!-- <div class="uk-form-label">Account Type *</div>
+                        <div class="uk-inline">
+                            <span class="uk-form-icon"><i class="far fa-User icon-medium"></i></span> 
+                            <input class="uk-input uk-form-width-large" placeholder="Account Type" id="txtaccounttype" name="txtaccounttype" type="text"
+                            [(ngModel)]="newadd.accountname"  accounttype required autofocus ngModel #accounttype="ngModel" >
+                            <div>
+                                <small class="help-bpx" style="color: red;font-weight:bold;" *ngIf="accounttype.touched && !accounttype.valid  ">Account Type is required</small>
+                              </div>
+                          </div> -->
+                        <div class="uk-form-label">Email address *</div>
+                        <div class="uk-inline">
+                            <span class="uk-form-icon"><i class="far fa-envelope icon-medium"></i></span> 
+                            <input type="text" class="uk-input uk-form-width-large" id="email" placeholder="name@example.com" 
+                            name="email" email required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                            [(ngModel)]="newadd.email"   ngModel #email="ngModel"  >
+                            <div *ngIf="email.errors && email.touched">
+                                <small style="color: red;font-weight: bold" *ngIf="email.errors.required">Email is Required.</small>
+                                <small style="color: red ;font-weight: bold " *ngIf="email.errors.pattern">Email format is invalid.</small>
+                            </div>
+                               </div>
+                        <div class="uk-child-width-1-2@m uk-grid-small" uk-grid>
+                            <div>
+                                <div class="uk-form-label">Password *</div>
+                                <input class="uk-input" placeholder="Password" type="Password" id="password1" name="password1"
+                                password required ngModel #password="ngModel" minlength="8"  [(ngModel)]="newadd.password"  >
+                                <div *ngIf="password.errors && password.touched">
+                                    <small style="color: red;font-weight: bold" *ngIf="password.errors.required">Password is required.</small>
+                                    <small style="color: red ;font-weight: bold " *ngIf="password.errors.minlength">Password should be minimum 8 character</small>
+                                </div>
+                            </div>                                     
+                            <div>
+                                <div class="uk-form-label">Confirm password *</div>
+                                <input class="uk-input" placeholder="Password" type="Password"  id="password2"  name="password2"
+                                confirmpassword required ngModel #confirmpassword="ngModel" minlength="8"
+                                >
+
+                                <div *ngIf="confirmpassword.errors && confirmpassword.touched">
+                                    <small style="color: red;font-weight: bold" *ngIf="confirmpassword.errors.required">Confirm Password is required.</small>
+                                </div>
+                                <div *ngIf="missmatchcheck== false && confirmpassword.touched">
+                                    <small class="help-bpx" style="color: red;font-weight: bold"> Password misMatch</small>
+                                </div>
+                            </div>                                     
+                        </div>
+                        <!-- <div>
+                            <label>
+                                <input class="uk-checkbox" type="checkbox" data-show-pw="#password-1 ,#password-2"> 
+                                <span class="checkmark uk-text-small"> Show passwords </span> 
+                            </label>     
+                        </div>   -->
+                        <div class="uk-margin"> 
+                            <label>  
+                                    <input id="IsActive" type="checkbox" checked="checked"  
+                                     [(ngModel)]="newadd.isactive" name="IsActive" class="uk-checkbox">
+                                <!-- <input class="uk-checkbox" type="checkbox" checked>   -->
+                                <span class="checkmark uk-text-small"> I agree to the </span> 
+                                <a href="#modal-overflow" class="uk-text-bold uk-text-small" uk-toggle> Terms and Conditions  </a> 
+                            </label> 
+                        </div>
+                        <div class=" uk-flex-middle" uk-grid>
+                            <div class="uk-width-expand@m">     
+                                <input class="uk-button uk-button-success" type="submit" value="Create"  [disabled]="!form.valid" (click)="onSubmit()">                                                                            
+                            </div>
+                            <div class="uk-width-auto@m">
+                                <span class="uk-text-small"> Already registered? <a href="#" class="tablinks uk-text-bold" onclick="openTabs(event, 'login')"> Sign in </a>  </span>
+                            </div>
+                        </div>  
+                        </form>
+
+                    </div>  
+ 
+
+<div id="modal-overflow" uk-modal> 
+    <div class="uk-modal-dialog"> 
+        <button class="uk-modal-close-default uk-margin-small-top uk-margin-small-right" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <b class="uk-text-medium"> Terms  </b> 
+        </div> 
+        <div class="uk-modal-body" uk-overflow-auto> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+        </div> 
+        <div class="uk-modal-footer uk-text-right"> 
+            <button class="uk-button uk-button-grey uk-modal-close" type="button">Cancel</button> 
+<!--           
+            <button class="uk-button uk-button-primary" type="button">Save</button>  -->
+        </div> 
+    </div>
+</div> 

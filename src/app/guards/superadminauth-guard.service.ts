@@ -15,6 +15,13 @@ export class SuperAdminAuthGuard implements CanActivate {
   }
 
   checkAuthAndAuthorize(): boolean {
+    if(this.authService.isLoggedIn()) return true;
+    else
+    {
+     this.router.navigate(['/']);
+      return false;
+    }
+    // return (this.authService.isLoggedIn()) ? false : true;
     //  if (this.authService.isLoggedIn() && (this.authService.getRoleId() == RolesEnum.SuperAdmin || this.authService.getRoleId() == RolesEnum.Staff)) {
     //     console.log('super admin AuthGuard - user logged in');
     //     return true;
@@ -24,6 +31,9 @@ export class SuperAdminAuthGuard implements CanActivate {
     //   console.log('super admin AuthGuard - user not logged in');
     //   this.router.navigate(['/']);
     //   return false;
-    return true;
+    // return true;
   }
+
+   
+
 }

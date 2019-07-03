@@ -26,17 +26,17 @@
               "src/styles.scss"
             ],
             "scripts": [
+               // "node_modules/dropzone/dist/dropzone.js",
+              // "node_modules/jquery/dist/jquery.js",
+              // "node_modules/jquery-mask-plugin/dist/jquery.mask.min.js",
+              // "node_modules/popper.js/dist/umd/popper.min.js",
+              // "node_modules/bootstrap/dist/js/bootstrap.min.js"
 
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/jquery-mask-plugin/dist/jquery.mask.min.js",
-              "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/moment/moment.js",
-              "src/assets/scripts/sweetalert.min.js",
-              "node_modules/dropzone/dist/dropzone.js",
+              "src/assets/scripts/sweetalert.min.js",           
               "src/assets/theme/js/uikit.js",
               "src/assets/theme/js/simplebar.js",
-              "src/assets/theme/js/dropzone.min.js",
+              // "src/assets/theme/js/dropzone.min.js",
               "src/assets/theme/js/custom.js"
 
 

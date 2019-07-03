@@ -7,13 +7,19 @@ export class LoginUser {
 export class LoggedInUser {
   userId: number;
   name: string;
-  accessToken: string;
-  organizationId: number;
-  organizationName: string;
+  accessToken: string;  
   roleId: number;
-  totalCompanyAssigned: number;
+  
 }
 
 export class ForgotPassword {
   email: string;
+}
+export class UserRegsiter {
+  firstname : string ;
+  lastname : string ;
+  accountname: string ;
+  plantype : number ;
+  email : string ;
+  password : string;
 }

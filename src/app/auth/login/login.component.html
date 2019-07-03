@@ -1,0 +1,54 @@
+ 
+                <!-- Login tab tab -->
+                <div id="login" class="tabcontent tab-default-open animation: uk-animation-slide-right-medium"> 
+                    <h2 class="uk-text-bold"> Log in </h2>
+                    <form #form="ngForm" (ngSubmit)="onLogin(form)"> 
+                    <p class="uk-text-muted uk-margin-remove-top uk-margin-small-bottom"> Fill blank to log your account</p>
+                    <div class="uk-form-label"> Email address </div>
+                    <div class="uk-inline uk-margin-small-bottom">
+                        <span class="uk-form-icon"><i class="far fa-User icon-medium"></i></span> 
+                        <input type="text" class="uk-input uk-form-width-large" id="email" placeholder="name@example.com" 
+                        name="email" email required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        ngModel #email="ngModel" autofocus>
+                        <div *ngIf="email.errors && email.touched">
+                            <small style="color: red;font-weight: bold" *ngIf="email.errors.required">Email is Required.</small>
+                            <small style="color: red ;font-weight: bold " *ngIf="email.errors.pattern">Email format is invalid.</small>
+                        </div>
+  </div>
+                    <div class="uk-flex-middle" uk-grid>
+                        <div class="uk-width-expand@m uk-margin-small-bottom">    
+                            <div class="uk-form-label">Password</div>                                 
+                        </div>
+                        <div class="uk-width-auto@m">
+                          <a href="javascript:void(0);" routerLink="/forgetpassword"  class="forget-password float-right"> Lost password? </a> 
+                        </div>
+                    </div>
+                    <div class="uk-inline uk-margin-small-bottom">
+                        <span class="uk-form-icon"><i class="fas fa-key icon-medium"></i></span> 
+                        <input type="password" class="uk-input uk-form-width-large" id="password" placeholder="Password" name="password" password required ngModel
+			#password="ngModel">
+		   <small class="help-bpx" style="color: red;font-weight: bold" *ngIf="password.touched && !password.valid ">Password is required</small>
+                        <!-- <input class="uk-input uk-form-width-large" name="password" id="password" placeholder="Password" type="password"> -->
+                    </div>
+                    <div>
+                        <label>
+                            <input class="uk-checkbox" type="checkbox" data-show-pw="#password"> 
+                            <span class="checkmark uk-text-small"> Show password  </span> 
+                        </label>     
+                    </div> 
+                    <div class="uk-margin uk-text-small"> 
+                        Not registered ?                                         
+                        <a  href="javascript:void(0);" routerLink="/registration"  class="tablinks uk-text-bold" > Create account  </a> 
+                    </div>
+                    <div class="uk-flex-middle" uk-grid>
+                        <div class="uk-width-expand@m">     
+                            <input class="uk-button uk-button-success" type="submit"   [disabled]="!form.valid" value="Sign in">                                  
+                        </div>
+                        <div class="uk-width-auto@m uk-position-relative">
+                            <a class="uk-icon-button uk-button-primary uk-position-center-right" href="#" uk-tooltip="title: Log in with your Facebook ; delay: 500 ; pos: top-right ;animation:uk-animation-scale-up"> <i class="fab fa-Facebook icon-small"></i>  </a>
+                            <a class="uk-icon-button uk-button-danger uk-position-center-right uk-margin-medium-right " href="#" uk-tooltip="title: Log in with your Google  ; delay: 500 ; pos: top-right ;animation:	uk-animation-scale-up"> <i class="fab fa-google icon-small"></i> </a>
+                        </div>
+                    </div>  
+                </form>
+                </div>
+ 

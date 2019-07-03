@@ -1,12 +1,35 @@
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from "./auth/login.component";
-
-import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AppSuperAdminComponent } from "./master-module/app-superadmin.component";
+import {LoginMenuComponent} from "./auth/login-menu.component"; 
+ 
+import {SuperAdminAuthGuard} from "./guards/superadminauth-guard.service";
+// import {CommonAuthService} from './common-auth.service';
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-
-  { path: '', component: LoginComponent },
-  { path: 'profile', component: ProfilePageComponent }
+  {  path: '',
+  redirectTo: 'login',
+  pathMatch: 'full'}, 
+  {
+    path: '',
+    component: AppSuperAdminComponent,    
+    canActivate: [SuperAdminAuthGuard], 
+    children: [
+        {
+      path: '',
+      loadChildren: './master-module/app-superadmin.module#AppSuperAdminModule'
+  }]  },
+  {
+    path: '',
+    component: LoginMenuComponent,    
+    children: [
+        {
+      path: '',
+      loadChildren: './auth/auth.module#AuthModule'
+  }]  }
+ 
 ];
-
-export const routing = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

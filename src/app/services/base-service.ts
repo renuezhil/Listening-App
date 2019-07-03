@@ -40,7 +40,8 @@ export abstract class BaseService {
     let errorMessage = '';
     if (httpErrorResponse instanceof HttpErrorResponse) {
       // client-side error
-      errorMessage = httpErrorResponse.error.error;
+      // errorMessage = httpErrorResponse.error.error || httpErrorResponse.error.message;
+      errorMessage = httpErrorResponse.error.message || httpErrorResponse.error.error;
     } else {
       // server-side error
       errorMessage = `Error Code: ${httpErrorResponse.status}\nMessage: ${httpErrorResponse.error.error}`;

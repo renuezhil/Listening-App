@@ -1,26 +1,36 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
+import { RouterModule } from "@angular/router";
 
 
 import { AuthRoutingModule } from "./auth-routing.module";
-import { LoginComponent } from "./login.component";
+import { LoginComponent } from "./login/login.component";
+import { ClientRegisterComponent } from './client-register/client-register.component'; 
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 
-import { ForgotPasswordComponent } from "./forgot-password.component";
 import { AuthService } from "./auth.service";
-
-import { AmControlsModule } from "../am-controls/am-controls.module";
-
+ 
 @NgModule({
-  imports: [
-    CommonModule,
+  imports: [   
+    
     FormsModule,
-    ReactiveFormsModule,
-    AmControlsModule,
+    CommonModule,
+    ReactiveFormsModule,    
     AuthRoutingModule
+     
   ],
-  declarations: [ForgotPasswordComponent, LoginComponent],
-  providers: [AuthService]
+  declarations: [
+    LoginComponent,
+    ForgotPasswordComponent,
+    ClientRegisterComponent  
+  ],
+  exports: [
+    LoginComponent,
+    ForgotPasswordComponent,
+    ClientRegisterComponent  
+  ], 
+  providers: [AuthService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class AuthModule { }

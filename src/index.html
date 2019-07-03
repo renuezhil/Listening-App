@@ -7,12 +7,55 @@
   <title>Limbapp</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  <link rel="shortcut icon" href=" assets/theme/images/favn.png">
+  <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
   <app-root></app-root>
+  <script>
+    // Preloader
+    var spinneroverlay = document.getElementById("spinneroverlay");
+   window.addEventListener('load', function(){
+       spinneroverlay.style.display = 'none';
+   });
+   //scrollTop
+   // When the user scrolls down 20px from the top of the document, show the button
+   window.onscroll = function() {scrollFunction()};        
+   function scrollFunction() {
+       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+           document.getElementById("scrollTop").style.display = "block";
+       } else {
+           document.getElementById("scrollTop").style.display = "none";
+       }
+   }        
+   // When the user clicks on the button, scroll to the top of the document
+   function topFunction() {
+       document.body.scrollTop = 0;
+       document.documentElement.scrollTop = 0;
+   }
+   
+		// Listen for clicks in the document
+		document.addEventListener('click', function (event) {
+
+			// Check if a password selector was clicked
+			var selector = event.target.getAttribute('data-show-pw');
+			if (!selector) return;
+
+			// Get the passwords
+			var passwords = document.querySelectorAll(selector);
+
+			// Toggle visibility
+			Array.from(passwords).forEach(function (password) {
+				if (event.target.checked === true) {
+					password.type = 'text';
+				} else {
+					password.type = 'password';
+				}
+			});
+		}, false);
+	    </script>
 </body>
 
 </html>

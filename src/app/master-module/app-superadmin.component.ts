@@ -34,4 +34,39 @@ export class AppSuperAdminComponent implements OnInit {
   showOptions(){
     return this.roleId == RolesEnum.SuperAdmin;
   }
+
+  menuItem: any = [
+    {
+      url: "dashboard",
+      label: "Home",
+      isActive: true
+    }, {
+      url: "about",
+      label: "About"
+    }, {
+      url: "contact-us",
+      label: "Contact Us"
+    },
+    {
+      url: "profile",
+      label: "Profile"
+    },
+    {
+      url: "treding",
+      label: "Treding"
+    }, {
+      url: "login",
+      label: "Log out"
+    }
+  ]
+  menuClick(itemlabel)
+  {
+    alert(itemlabel);
+    if(itemlabel == "login") this.logout();
+  }
+  logout()
+  {
+    this.authService.logout();
+    this.router.navigate(['login']); 
+    }
 }

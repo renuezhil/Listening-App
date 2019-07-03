@@ -1,0 +1,6 @@
+{  "/api/*": {    
+    "target": "https://devapps.efficience.us",   
+     "secure": false,
+         "pathRewrite": {"^/api" : ""} 
+          }
+}

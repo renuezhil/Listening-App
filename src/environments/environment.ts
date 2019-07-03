@@ -4,9 +4,13 @@
 
 export const environment = {
   production: false,
-  url: 'http://dicom.efficience.us:9990/Dicom'
+  // url:'http://localhost/'
+  url: 'https://devapps.efficience.us/listeningApp/public/api/'
 };
 
+// production: false,
+// url: 'http://dicom.efficience.us:9990/Dicom'
+// };
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

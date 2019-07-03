@@ -1,0 +1,47 @@
+<div class="uk-section-default uk-height-large"
+  uk-scrollspy="{&quot;target&quot;:&quot;[uk-scrollspy-class]&quot;,&quot;cls&quot;:&quot;uk-animation-slide-top-small&quot;,&quot;delay&quot;:false}"
+  tm-header-transparent="dark" tm-header-transparent-placeholder="">
+  <div data-src="../assets/images/backgrounds/about.jpg" uk-img
+    class="uk-background-norepeat uk-background-center-center uk-background-image@s uk-background-fixe uk-section uk-section-large uk-padding-remove-top uk-flex uk-flex-middle uk-background-cover"
+    uk-height-viewport="offset-top: true"
+    style="    background-color: rgba(0, 0, 0, 0.52);background-blend-mode: color-burn;">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-1-1@m uk-text-center">
+          <h1 class=" uk-animation-slide-top-small uk-text-white">Our Trending Videos </h1>
+          <p class="uk-text-white uk-text-large">
+            Maecenas vel dolor sit amet ligula interdum tempor id ipsum.<br> Suspendisse pharetra risus ut metus
+            elementum pulvinar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+  <ng-container *ngFor="let cat of this.catogiry;">
+<div class="uk-section-default uk-section-small">
+  <div class="uk-container">
+    <h1> <span>{{cat.name}} </span> </h1>
+    <div class="uk-margin uk-grid-match uk-child-width-1-3@m"
+      uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 200" uk-grid>
+      <div *ngFor="let video of cat.videos;" [ngClass]="i%3==0? 'uk-first-column' : ''">
+      <div class="uk-first-column">
+        <div class="uk-card-small   uk-margin-small-bottom">
+          <video  loop muted>
+              <source src="{{video.url}}" type="{{video.type}}">
+          </video>
+          <h3 class="uk-margin uk-margin-remove-bottom"> {{video.title}}</h3>
+          <p class=" uk-margin uk-margin-remove-top uk-margin-remove-bottom uk-article-meta">
+            Written by Super User on <time datetime="2019-02-08T14:18:59+00:00">08 February 2019</time>. Posted in <a
+              href="#">Listening App</a> </p>
+          <p class="uk-margin-small-top">It contains Motivational Videos.</p>
+          <a class="uk-button uk-button-success" href="#">Save To Watch Later</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <a href="#" class="uk-align-center uk-text-center uk-margin-large uk-h4 uk-link-heading"> Browse more Videos </a>
+  </div>
+</div>
+</ng-container>

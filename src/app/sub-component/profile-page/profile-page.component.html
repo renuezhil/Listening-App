@@ -1,0 +1,126 @@
+ 
+<div class="uk-container uk-margin-medium-top ">
+    <div uk-grid class="uk-top uk-grid">
+      <div class="uk-width-1-4@m">
+        <div class="uk-card uk-card-default border-radius-6 uk-card uk-padding-small  uk-box-shadow-medium"
+          uk-sticky="offset: 90; bottom: true; media: @m;">
+          <div
+            class=" uk-width-1-3 uk-width-1-4@s uk-width-1-2@m  uk-margin-small-bottom  uk-margin-medium-top uk-margin-auto uk-visible-toggle uk-position-relative uk-border-circle uk-overflow-hidden uk-light">
+            <img class="uk-width-1-1" src="../../assets/theme/images/avatures/avature-2.png">
+            <a class="uk-link-reset uk-overlay-primary uk-position-cover uk-hidden-hover" href="#">
+              <div class="uk-position-center">
+                <i class="fas fa-camera icon-large"></i>
+              </div>
+            </a>
+          </div>
+          <div class="uk-h4 uk-margin-remove uk-text-center uk-margin-small-top">Jai</div>
+          <div class="uk-text-meta uk-text-center">Joined June 6, 2018</div>
+          <div class="uk-margin-medium-bottom  uk-margin-top  uk-text-center">
+            <a class="Course-tags uk-margin-small-right border-radius-6 tags-active" href="#"><i
+                class="fas fa-envelope"></i> Send </a>
+            <a class="Course-tags uk-margin-small-right border-radius-6 tags-bg-danger" href="#"><i
+                class="fas fa-sign-out-alt"></i> </a>
+          </div>
+          <ul class="uk-list uk-list-divider uk-margin-remove-bottom uk-text-center uk-text-small" style="margin: -15px;">
+            <li>
+                <a   href="#create-model"  class="uk-link-reset"  uk-toggle> Edit Your Account </a>
+               <!-- <a href="javascript:void(0);" routerLink="/editprofile"  class="uk-link-reset"> Edit Your Account </a> -->
+            </li>
+            <li>
+              <a href="#" class="uk-link-reset"> Notification </a>
+            </li>
+            <li>
+              <a href="#" class="uk-link-reset"> Membership upgrade </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="uk-width-3-4@m">
+   
+        <app-profile-card></app-profile-card>
+  
+      </div>
+    </div>
+  </div>
+   
+  
+  <-- Edit Profile -->
+  
+      <div id="create-model" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog"> 
+        <!-- <h1 class="uk-modal-title">Edit User Profile</h1> -->
+        <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                             
+        <div class="uk-modal-body"> 
+            <div uk-grid> 
+                <div class="uk-width-1-3@m"> 
+  
+                    
+                </div>                                     
+                <div class="uk-width"> 
+                    <form #form="ngForm" name="addForm" novalidate>  
+                    <div class="admin-content-inner">           
+                        <div class="uk-margin-medium"> 
+                            <div uk-grid> 
+                              
+                                    <div class="uk-width-1-2@m"> 
+                                    <div class="uk-card-small uk-card-default"> 
+                                        <div class="uk-card-header uk-text-bold">
+                                            <i class="fas fa-envelope uk-margin-small-right"></i> Edit User Detail
+                                        </div>                                 
+                                        <div class="uk-card-body uk-padding-remove-top"> 
+                                            <div class="uk-form-label"> Name  </div>                                     
+                                            <input type="text" [disabled]="disabled==true" class="uk-input uk-form-width-large" id="txtfirstname" placeholder="First Name" [(ngModel)]="newadd.firstname"
+                                            name="txtfirstname" firstname required autofocus ngModel #firstname="ngModel"  >
+                                            <div>
+                                        <small class="help-bpx" style="color: red;font-weight:bold;" *ngIf="firstname.touched && !firstname.valid  ">First Name is required</small>
+                                      </div>
+                                            <div class="uk-form-label"> Last Name  </div>                                     
+                                            <input class="uk-input uk-form-width-large" placeholder="Last Name" id="txtlastname" name="txtlastname" type="text"
+                                            [(ngModel)]="newadd.lastname"  lastname required autofocus ngModel #lastname="ngModel">
+                                            <div>
+                                                <small class="help-bpx" style="color: red;font-weight:bold;" *ngIf="lastname.touched && !lastname.valid  ">Last Name is required</small>
+                                              </div>
+                                            <div class="uk-form-label"> Email  </div>                                     
+                                            <input type="text" class="uk-input uk-form-width-large" id="email" placeholder="name@example.com" 
+                                            name="email" email required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                            [(ngModel)]="newadd.email"   ngModel #email="ngModel"  >
+                                            <div *ngIf="email.errors && email.touched">
+                                                <small style="color: red;font-weight: bold" *ngIf="email.errors.required">Email is Required.</small>
+                                                <small style="color: red ;font-weight: bold " *ngIf="email.errors.pattern">Email format is invalid.</small>
+                                            </div>
+                                        </div>  
+                        
+                                    </div>  
+                      <input class="uk-button uk-button-grey  uk-margin" type="submit" (click)="userdetailSave(form)" value="Save"> 
+                                </div>     
+                                               
+                                <div class="uk-width-1-2@m"> 
+                                    <div class="uk-card-small uk-card-default"> 
+                                        <div class="uk-card-header uk-text-bold"> 
+                                            <i class="fas fa-lock uk-margin-small-right"></i> Change password 
+                                        </div>                                 
+                                        <div class="uk-card-body uk-padding-remove-top"> 
+                                            <div class="uk-form-label"> Old password  </div>                                     
+                                            <input class="uk-input" type="text"> 
+                                            <div class="uk-form-label"> New password  </div>                                     
+                                            <input class="uk-input" type="text"> 
+                                            <div class="uk-form-label"> Confirm new password  </div>                                     
+                                            <input class="uk-input" type="text"> 
+                                        </div>                                 
+                                    </div>  
+                      <input class="uk-button uk-button-grey  uk-margin" type="submit" (click)="passworddetailSave(form)" value="Save" style="text-align:center;"> 
+                                </div>                         
+                            </div>                     
+                            
+                        </div>                 
+                    </div>   
+                  </form>                                           
+                </div>                                     
+            </div>                                 
+        </div>                             
+        <!-- <div class="uk-modal-footer uk-text-right"> 
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>                                 
+            <button class="uk-button uk-button-primary" type="button">Save</button>                                 
+        </div>                              -->
+    </div>                         
+  </div>  

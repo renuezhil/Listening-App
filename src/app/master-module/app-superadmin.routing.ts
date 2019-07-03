@@ -1,22 +1,17 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { AppSuperAdminComponent } from "./app-superadmin.component";
-import { SuperAdminAuthGuard } from "../guards/superadminauth-guard.service";
-import { SuperAdminHomeComponent } from "../home/superadmin-home.component";
-
+ 
+// import { SuperAdminAuthGuard } from "../guards/superadminauth-guard.service";
+import { DashboardComponentComponent } from '../sub-component/dashboard-component/dashboard-component.component';
+ 
 
 @NgModule({
-  imports: [
-    RouterModule.forChild([
-      {
-        path: 'super-admin',
-        component: AppSuperAdminComponent,
-        canActivate: [SuperAdminAuthGuard],
-        children: [
-          { path: 'home', component: SuperAdminHomeComponent },
-        ]
-      }
-    ])
+  imports: [  
+      RouterModule.forChild([    
+{ path: 'dashboard', component: DashboardComponentComponent } 
+  ])],
+  exports: [
+    RouterModule
   ]
 })
 export class AppSuperAdminRouting {

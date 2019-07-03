@@ -1,54 +1,63 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary limb-header">
-    <a class="navbar-brand" href="#">Listening App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-      aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active" [routerLinkActive]="['active']" data-toggle="tooltip" data-placement="right" title="" data-original-title="Home">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <!-- <li class="nav-item" *ngIf="showOptions()" [routerLinkActive]="['active']" data-toggle="tooltip" data-placement="right" title="" data-original-title="User">
-          <a class="nav-link" href="#" [routerLink]="['/super-admin/user']">User</a>
-        </li> -->
-        <li class="nav-item" *ngIf="showOptions()" [routerLinkActive]="['active']" data-toggle="tooltip" data-placement="right" title="" data-original-title="User">
-          <a class="nav-link" href="#" [routerLink]="['/super-admin/dicom']">User</a>
-        </li>
-      </ul>
-      <div class="nav-item dropdown logged-user">
-        <a class="nav-link dropdown-toggle" id="user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{profileName}}
-              </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['/super-admin/profile']">My Profile</a>
-          <a class="dropdown-item" [routerLink]="['/super-admin/change-password']">Change Password</a>
-          <a class="dropdown-item" (click)="onLogoutUser()">Logout</a>
+    <!-- PreLoader -->
+    <div id="spinneroverlay">
+      <div class="spinner"></div>
+    </div>
+    <!-- Nav for  mobile  -->
+    <div id="tm-mobile" class="uk-modal-full uk-modal" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body uk-text-center uk-flex" uk-height-viewport>
+        <button class="uk-modal-close-full uk-close uk-icon" type="button" uk-close></button>
+        <div class="uk-margin-auto-vertical uk-width-1-1">
+          <div class="uk-child-width-1-1" uk-grid>
+            <div>
+              <div class="uk-panel">
+                <ul class="uk-navbar-nav toolbar-nav">
+                  <li *ngFor="let  item of this.menuItem" [ngClass]="item.isActive? 'active' : ''">
+                    <a  routerLink="['{{item.url}}']"> {{item.label}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="uk-panel widget-text" id="widget-text-1">
+                <div class="textwidget">
+                  <p class="uk-text-center"><a class="uk-button uk-button-success uk-button-large" href="#"> Start now
+                    </a></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
-</header>
+    <!-- Navbar   -->
+    <div class="tm-header uk-visible@m tm-header-transparent uk-margin-top">
+      <div uk-sticky media="768" animation="uk-animation-slide-top" cls-active="uk-navbar-sticky uk-nav-dark"
+        sel-target=".uk-navbar-container"
+        top=".tm-header ~ [class*='uk-section'], .tm-header ~ * > [class*='uk-section']"
+        cls-inactive="uk-navbar-transparent   uk-dark" class="uk-sticky uk-navbar-container">
+        <div class="uk-container  uk-position-relative">
+          <nav class="uk-navbar uk-navbar-transparent">
+            <!-- logo -->
+            <div class="uk-navbar-left">
+              <a href="#" class="uk-logo"><i class="fas fa-headphones"></i> Listening App</a>
+            </div>
+            <!-- right navbar  -->
+            <div class="uk-navbar-right">
+              <ul class="uk-navbar-nav toolbar-nav">
+                <li *ngFor="let  item of this.menuItem" [ngClass]="item.isActive? 'active' : ''">
+                  <a routerLink="{{item.url}}" href="javascript:void(0);" (click)="menuClick(item.url)">{{item.label}}</a></li>
+              </ul>
+            </div>
 
-<div class="content-wrapper">
-  <router-outlet></router-outlet>
-</div>
-<!-- <footer>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="footer-content">
-          <p>Wears Valley &copy; 2018. All rights reserved.</p>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="footer-text">
-          <p class="mrg-rgt40px">Privacy Policy</p>
-          <p>Terms & Conditions</p>
+
+          </nav>
         </div>
       </div>
     </div>
-  </div>
-</footer> -->
+
+<router-outlet></router-outlet>
+<app-footer-component></app-footer-component>
+
+ <!-- button scrollTop -->         
+<button id="scrollTop" class="uk-animation-slide-bottom-medium"> 
+  <a href="#" class="uk-text-white" uk-totop uk-scroll></a> 
+</button>    

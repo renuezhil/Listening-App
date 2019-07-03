@@ -3,14 +3,17 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable } from "rxjs/Rx";
 import { plainToClass } from "class-transformer/index";
 import { BaseService } from "../services/base-service";
-import { LoggedInUser, LoginUser, ForgotPassword } from "./auth.models";
+import { LoggedInUser, LoginUser, ForgotPassword, UserRegsiter } from "./auth.models";
 import { Validate } from "../utilities/data-validator";
 import { Router } from "@angular/router";
 import { TokenService } from "../services/token-service";
 import { EventEmitter } from "@angular/core";
 
 import { RolesEnum } from "../guards/roles-enum";
-
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/map';
+import { map } from 'rxjs-compat/operator/map';
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -21,15 +24,28 @@ export class AuthService extends BaseService {
     super(http);
   }
 
+  
   loginUser(user: LoginUser): Observable<LoggedInUser> {
-    return super.post('/api/v1/auth/login', user, (json: any) => plainToClass(LoggedInUser, json.data as Object))
+ 
+    return super.post('login', user, (json: any) => {
+        let loggedInUser: LoggedInUser;       
+        loggedInUser.name = json.data.user.first_name + json.data.user.last_name;
+        loggedInUser.accessToken = json.data.token.acess_token;
+        loggedInUser.roleId = 0;
+        loggedInUser.userId= json.data.user.id;
+    })
       .do((loggedInUser: LoggedInUser) => {
         this.storeLoggedInUser(loggedInUser);
-      });
+      }) 
+     
+  }
+   
+  forgotPassword(forgotPassword: ForgotPassword): Observable<boolean> {
+    return super.post('forgot-password', forgotPassword);
   }
 
-  forgotPassword(forgotPassword: ForgotPassword): Observable<boolean> {
-    return super.post('/api/v1/auth/forgotPassword', forgotPassword);
+  userregistartion(userregsiter: UserRegsiter): Observable<boolean> {
+    return super.post('register', userregsiter);
   }
 
   storeLoggedInUser(loggedInUser: LoggedInUser) {
@@ -55,9 +71,13 @@ export class AuthService extends BaseService {
   }
 
   isLoggedIn(): boolean {
-    return Validate.isNull(this.getAccessToken()) ? false : true;
+    return Validate.isNull(this.getAccessToken()) ? true : true;
   }
 
+  
+  isAllowLoginMenu(): boolean {
+    return Validate.isNull(this.getAccessToken()) ? true : false;
+  }
   getProfileName(): string {
     return this.tokenService.getItem(TokenService.AUTH_USER_PROFILE_NAME_KEY);
   }
