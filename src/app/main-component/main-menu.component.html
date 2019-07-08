@@ -1,0 +1,39 @@
+ 
+  <app-menu-bar></app-menu-bar>
+  <div class="admin-content"> 
+          <!-- navbar -->             
+          <nav class="uk-navbar"> 
+              <div class="uk-navbar-left"> 
+                  <!-- <ul class="uk-navbar-nav">                                               
+                      <li> 
+                          <a href="admin-cat1.html">Category</a> 
+                      </li>                         
+                  </ul>                      -->
+              </div>                 
+              <!-- right navbar  -->                 
+              <div class="uk-navbar-right"> 
+                  <!-- User profile -->                     
+                  <a href="#"> 
+                      <img src="../assets/images/avatures/avature-2.png" alt="" class="uk-border-circle user-profile-tiny"> 
+                  </a>                     
+                  <div uk-dropdown="pos: top-right ;mode : click ;animation: uk-animation-slide-bottom-small" class="uk-dropdown uk-padding-small angle-top-right uk-dropdown-bottom-right" > 
+                      <p class="uk-margin-remove-bottom uk-margin-small-top uk-text-bold"> {{this.profileName}} </p>                                          
+                      <ul class="uk-nav uk-dropdown-nav"> 
+                          <li> 
+                              <a href="javascript:void(0);" routerLink="/profile"> <i class="fas fa-user uk-margin-small-right"></i> Profile</a> 
+                          </li>    
+                      <li class="uk-nav-divider"></li>                                             
+                          <li> 
+                              <a href="javascript:void(0);" (click)="onLogoutUser()"> <i class="fas fa-sign-out-alt uk-margin-small-right"></i> Log out</a> 
+                          </li>                                             
+                      </ul>                                         
+                  </div>                     
+              </div>                 
+          </nav>    
+<router-outlet></router-outlet>
+</div>     
+ 
+ <!-- button scrollTop -->         
+<button id="scrollTop" class="uk-animation-slide-bottom-medium"> 
+  <a href="#" class="uk-text-white" uk-totop uk-scroll></a> 
+</button>    

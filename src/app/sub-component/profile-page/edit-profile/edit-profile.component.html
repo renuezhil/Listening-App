@@ -1,74 +1,104 @@
- <!-- main contant -->         
- <div class="admin-content"> 
-  <!-- navbar -->             
-  <nav class="uk-navbar"> 
-      <div class="uk-navbar-left"> 
-          <ul class="uk-navbar-nav"> 
-                                      
-              <li> 
-                  <a href="admin-edite-profile.html">Edit profile</a> 
-              </li>                         
-          </ul>                     
-      </div>                 
-      <!-- right navbar  -->                 
-      <div class="uk-navbar-right"> 
-          <!-- User profile -->                     
-          <a href="#"> 
-              <img src="../assets/images/avatures/avature-2.png" alt="" class="uk-border-circle user-profile-tiny"> 
-          </a>                     
-          <div uk-dropdown="pos: top-right ;mode : click ;animation: uk-animation-slide-bottom-small" class="uk-dropdown uk-padding-small angle-top-right uk-dropdown-bottom-right" > 
-              <p class="uk-margin-remove-bottom uk-margin-small-top uk-text-bold"> Hamse Mohamoud  </p>                                          
-              <ul class="uk-nav uk-dropdown-nav"> 
-                  <li> 
-                      <a href="Profile.html"> <i class="fas fa-user uk-margin-small-right"></i> Profile</a> 
-                  </li>                                             
-                  
-    <li class="uk-nav-divider"></li>                                             
-                  <li> 
-                      <a href="admin-login.html"> <i class="fas fa-sign-out-alt uk-margin-small-right"></i> Log out</a> 
-                  </li>                                             
-              </ul>                                         
-          </div>                     
-      </div>                 
-  </nav>             
-        <div class="admin-content-inner">           
-      <div class="uk-margin-medium"> 
-          <div uk-grid> 
-              <div class="uk-width-1-2@m"> 
-                  <div class="uk-card-small uk-card-default"> 
-                      <div class="uk-card-header uk-text-bold">
-                          <i class="fas fa-envelope uk-margin-small-right"></i> User Registration
-                      </div>                                 
-                      <div class="uk-card-body uk-padding-remove-top"> 
-                          <div class="uk-form-label"> Name  </div>                                     
-                          <input class="uk-input" type="text"> 
-                          <div class="uk-form-label"> Last Name  </div>                                     
-                          <input class="uk-input" type="email"> 
-                          <div class="uk-form-label"> Email  </div>                                     
-                          <input class="uk-input" type="text"> 
-                      </div>  
-      
-                  </div>  
-    <input class="uk-button uk-button-grey  uk-margin" type="submit" class="button" value="Save"> 
-              </div>                         
-              <div class="uk-width-1-2@m"> 
-                  <div class="uk-card-small uk-card-default"> 
-                      <div class="uk-card-header uk-text-bold"> 
-                          <i class="fas fa-lock uk-margin-small-right"></i> Change password 
-                      </div>                                 
-                      <div class="uk-card-body uk-padding-remove-top"> 
-                          <div class="uk-form-label"> Old password  </div>                                     
-                          <input class="uk-input" type="text"> 
-                          <div class="uk-form-label"> New password  </div>                                     
-                          <input class="uk-input" type="text"> 
-                          <div class="uk-form-label"> Confirm new password  </div>                                     
-                          <input class="uk-input" type="text"> 
-                      </div>                                 
-                  </div>  
-    <input class="uk-button uk-button-grey  uk-margin" type="submit" class="button" value="Save" style="text-align:center;"> 
-              </div>                         
-          </div>                     
-          
-      </div>                 
-  </div>             
-  </div> 
+<nav class="uk-navbar"> 
+        <div class="uk-navbar-left"> 
+            <ul class="uk-navbar-nav"> 
+                                        
+                <li> 
+                    <a href="javascript:void(0)">Edit profile</a> 
+                </li>                         
+            </ul>                     
+        </div>                 
+                     
+    </nav>    
+    
+                    <form #form="ngForm" name="addForm" novalidate>  
+<div class="admin-content-inner">
+    <div class="uk-margin-medium">
+        <div uk-grid>
+
+            <div class="uk-width-1-2@m">
+                <div class="uk-card-small uk-card-default">
+                    <div class="uk-card-header uk-text-bold">
+                        <i class="fas fa-envelope uk-margin-small-right"></i> Edit User Detail
+                    </div>
+                    <div class="uk-card-body uk-padding-remove-top">
+                        <div class="uk-form-label"> Name </div>
+                        <input type="text" [disabled]="disabled==true" class="uk-input uk-form-width-large"
+                            id="txtfirstname" placeholder="First Name" [(ngModel)]="newadd.firstname"
+                            name="txtfirstname" firstname required autofocus ngModel #firstname="ngModel">
+                        <div>
+                            <small class="help-bpx" style="color: red;font-weight:bold;"
+                                *ngIf="firstname.touched && !firstname.valid  ">First Name is required</small>
+                        </div>
+                        <div class="uk-form-label"> Last Name </div>
+                        <input class="uk-input uk-form-width-large" placeholder="Last Name" id="txtlastname"
+                            name="txtlastname" type="text" [(ngModel)]="newadd.lastname" lastname required autofocus
+                            ngModel #lastname="ngModel">
+                        <div>
+                            <small class="help-bpx" style="color: red;font-weight:bold;"
+                                *ngIf="lastname.touched && !lastname.valid  ">Last Name is required</small>
+                        </div>
+                        <div class="uk-form-label"> Email </div>
+                        <input type="text" class="uk-input uk-form-width-large" id="email"
+                            placeholder="name@example.com" name="email" email required
+                            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="newadd.email" ngModel
+                            #email="ngModel">
+                        <div *ngIf="email.errors && email.touched">
+                            <small style="color: red;font-weight: bold" *ngIf="email.errors.required">Email is
+                                Required.</small>
+                            <small style="color: red ;font-weight: bold " *ngIf="email.errors.pattern">Email format is
+                                invalid.</small>
+                        </div>
+                    </div>
+
+                </div>
+                <input class="uk-button uk-button-grey  uk-margin" type="submit" [disabled]="!form.valid"
+                    (click)="userdetailSave(form)" value="Save">
+            </div>
+
+            <div class="uk-width-1-2@m">
+                <div class="uk-card-small uk-card-default">
+                    <div class="uk-card-header uk-text-bold">
+                        <i class="fas fa-lock uk-margin-small-right"></i> Change password
+                    </div>
+                    <div class="uk-card-body uk-padding-remove-top">
+                        <div class="uk-form-label"> Old password </div>
+                        <input class="uk-input" placeholder="********" type="text" id="txtoldpassword" name="txtoldpassword"
+                        txtoldpassword required ngModel #txtoldpassword="ngModel"  [(ngModel)]="newadd.password">
+                        <div *ngIf="txtoldpassword.errors && txtoldpassword.touched">
+                            <small style="color: red;font-weight: bold" *ngIf="txtoldpassword.errors.required">Old password is
+                                required.</small>
+                            <!-- <small style="color: red ;font-weight: bold " *ngIf="txtoldpassword.errors.minlength">Password
+                                should be minimum 8 character</small> -->
+                        </div>
+                        <div class="uk-form-label"> New password </div>
+                        <input class="uk-input" placeholder="********" type="text" id="txtnewpassword" name="txtnewpassword"
+                        txtnewpassword required ngModel #txtnewpassword="ngModel"  [(ngModel)]="newadd.newpassword">
+                        <div *ngIf="txtnewpassword.errors && txtnewpassword.touched">
+                            <small style="color: red;font-weight: bold" *ngIf="txtnewpassword.errors.required">New password is
+                                required.</small>
+                            <!-- <small style="color: red ;font-weight: bold " *ngIf="password.errors.minlength">Password
+                                should be minimum 8 character</small> -->
+                        </div>
+                        <div class="uk-form-label"> Confirm new password </div>
+                        <input class="uk-input" placeholder="********" type="text" id="txtconfirmpassword" name="txtconfirmpassword"
+                        txtconfirmpassword required ngModel #txtconfirmpassword="ngModel"   (focusin)="missmatchcheck =true"
+                            (focusout)="missmatchcheck = this.commonservice.checkPassword($event.target.value,newadd.newpassword)">
+
+                        <div *ngIf="txtconfirmpassword.errors && txtconfirmpassword.touched && missmatchcheck== true">
+                            <small style="color: red;font-weight: bold" *ngIf="txtconfirmpassword.errors.required">Confirm
+                                Password is required.</small>
+                        </div>
+                        <div *ngIf="missmatchcheck== false && txtconfirmpassword.touched">
+                            <small class="help-bpx" style="color: red;font-weight: bold"> Password misMatch</small>
+                        </div>
+                    </div>
+                </div>
+                <input class="uk-button uk-button-grey  uk-margin" type="submit" [disabled]="!form.valid"
+                    (click)="passworddetailSave(form)" value="Save" style="text-align:center;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</form>

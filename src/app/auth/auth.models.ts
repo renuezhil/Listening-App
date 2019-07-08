@@ -4,12 +4,14 @@ export class LoginUser {
   password: string;
 }
 
-export class LoggedInUser {
-  userId: number;
+export class LoggedInUser { 
   name: string;
   accessToken: string;  
-  roleId: number;
-  
+  emailid :String;
+  roleId: number;  
+  userId: number;
+  data:any;
+  user:any;
 }
 
 export class ForgotPassword {

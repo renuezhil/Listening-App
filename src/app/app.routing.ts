@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppSuperAdminComponent } from "./master-module/app-superadmin.component";
+import { MainMenuComponent } from "./main-component/main-menu.component";
 import {LoginMenuComponent} from "./auth/login-menu.component"; 
+
  
 import {SuperAdminAuthGuard} from "./guards/superadminauth-guard.service";
 // import {CommonAuthService} from './common-auth.service';
@@ -11,12 +12,12 @@ const routes: Routes = [
   pathMatch: 'full'}, 
   {
     path: '',
-    component: AppSuperAdminComponent,    
+    component: MainMenuComponent,    
     canActivate: [SuperAdminAuthGuard], 
     children: [
         {
       path: '',
-      loadChildren: './master-module/app-superadmin.module#AppSuperAdminModule'
+      loadChildren: './main-component/main-menu.module#MainMenuModule'
   }]  },
   {
     path: '',

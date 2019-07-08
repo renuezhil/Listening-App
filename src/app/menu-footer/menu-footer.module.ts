@@ -6,7 +6,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 
 import { CommonModule } from '@angular/common';
 
- 
+import {MenuFooterService} from "./menu-footer.service";
  
 @NgModule({
     imports: [
@@ -18,7 +18,8 @@ import { CommonModule } from '@angular/common';
       ],
       exports: [
         MenuBarComponent,FooterComponentComponent 
-      ]
+      ],
+        providers : [MenuFooterService]
    
   })
   export class MenuFooterModule { }

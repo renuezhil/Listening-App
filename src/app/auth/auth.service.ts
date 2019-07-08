@@ -26,17 +26,19 @@ export class AuthService extends BaseService {
 
   
   loginUser(user: LoginUser): Observable<LoggedInUser> {
- 
-    return super.post('login', user, (json: any) => {
-        let loggedInUser: LoggedInUser;       
-        loggedInUser.name = json.data.user.first_name + json.data.user.last_name;
-        loggedInUser.accessToken = json.data.token.acess_token;
-        loggedInUser.roleId = 0;
-        loggedInUser.userId= json.data.user.id;
-    })
+   
+   return super.post('login', user )
+    //, (json: any) =>   json.data )
       .do((loggedInUser: LoggedInUser) => {
+        // let userData: LoggedInUser;  
+        // userData=     loggedInUser.data;
+        // userData.name = loggedInUser.user.first_name + loggedInUser.data.user.last_name;
+        // userData.accessToken = loggedInUser.data.token.acess_token;
+        // userData.roleId = 0;
+        // userData.userId= loggedInUser.data.user.id;
         this.storeLoggedInUser(loggedInUser);
       }) 
+
      
   }
    
@@ -49,9 +51,16 @@ export class AuthService extends BaseService {
   }
 
   storeLoggedInUser(loggedInUser: LoggedInUser) {
-    this.tokenService.setItem(TokenService.AUTH_USER_ACCESS_TOKEN_KEY, loggedInUser.accessToken);
-    this.tokenService.setItem(TokenService.AUTH_USER_PROFILE_NAME_KEY, loggedInUser.name);
-    this.tokenService.setItem(TokenService.AUTH_USER_ROLE_ID_KEY, loggedInUser.roleId.toString());
+    loggedInUser. name  = `${loggedInUser.data.user.first_name} ${loggedInUser.data.user.last_name}`
+    loggedInUser. roleId =2;
+    loggedInUser. userId =loggedInUser.data.user.id.toString();
+    loggedInUser.accessToken=loggedInUser.data.token;
+    loggedInUser.emailid=loggedInUser.data.user.email;
+
+    this.tokenService.setItem(TokenService.AUTH_USER_ACCESS_TOKEN_KEY, loggedInUser.data.token.access_token);
+    this.tokenService.setItem(TokenService.AUTH_USER_PROFILE_NAME_KEY, `${loggedInUser.data.user.first_name} ${loggedInUser.data.user.last_name}`);
+    this.tokenService.setItem(TokenService.AUTH_USER_ROLE_ID_KEY, "2");
+    this.tokenService.setItem(TokenService.AUTH_USER_EMAIL_ID_KEY, loggedInUser.data.user.email);
   }
 
   setProfileName(profileName: string) {
@@ -71,7 +80,7 @@ export class AuthService extends BaseService {
   }
 
   isLoggedIn(): boolean {
-    return Validate.isNull(this.getAccessToken()) ? true : true;
+    return Validate.isNull(this.getAccessToken()) ? false : true;
   }
 
   
@@ -93,6 +102,7 @@ export class AuthService extends BaseService {
     this.tokenService.removeItem(TokenService.AUTH_USER_PROFILE_NAME_KEY);
     this.tokenService.removeItem(TokenService.AUTH_USER_PROFILE_OTHER_KEY);
     this.tokenService.removeItem(TokenService.AUTH_USER_ROLE_ID_KEY);
+    this.tokenService.removeItem(TokenService.AUTH_USER_EMAIL_ID_KEY);
   }
 
 }

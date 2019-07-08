@@ -7,3 +7,10 @@ export class EditedLoggedInUser {
     password:string;
 
   }
+
+  export class ResetPasswordUser
+  {
+    email :string;
+    password :string;
+    newpassword :string;
+  }

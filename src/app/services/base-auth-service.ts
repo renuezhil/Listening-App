@@ -28,6 +28,16 @@ const noTransform = (json: any) => json.data;
 // var jwtHelper: JwtHelper = new JwtHelper();
 import { JwtHelperService } from '@auth0/angular-jwt';
 const jwtHelper = new JwtHelperService();
+
+var token = localStorage.getItem('AUTH_USER_ACCESS_TOKEN');
+ 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': `Bearer ${token}`
+  })
+};
+
 export abstract class BaseAuthService {
 
 
@@ -37,9 +47,9 @@ export abstract class BaseAuthService {
     protected toastr: ToastrManager
   ) { }
 
-
+ 
   accessTokenExpired(): boolean {
-    var token = localStorage.getItem('AUTH_USER_ACCESS_TOKEN');
+ 
     return jwtHelper.isTokenExpired(token);
   }
 
@@ -52,6 +62,7 @@ export abstract class BaseAuthService {
     localStorage.removeItem(TokenService.AUTH_USER_ACCESS_TOKEN_KEY);
     localStorage.removeItem(TokenService.AUTH_USER_PROFILE_NAME_KEY);
     localStorage.removeItem(TokenService.AUTH_USER_PROFILE_OTHER_KEY);
+    localStorage.removeItem(TokenService.AUTH_USER_EMAIL_ID_KEY);
     this.toastr.errorToastr(
       "Your session is expired. Please re-login to renew your session.",
       "Error!"
@@ -64,7 +75,7 @@ export abstract class BaseAuthService {
       var headers = new HttpHeaders();
       headers.set('Content-Type', 'application/json; charset=utf-8');
 
-      return this.authHttp.get(environment.url + url, { headers })
+      return this.authHttp.get(environment.url + url, httpOptions)
         .pipe(map(this.extractData), map(transform), catchError(this.handleError));
 
       // .map(this.extractObject)
@@ -78,10 +89,11 @@ export abstract class BaseAuthService {
 
   post(url: string, body: any, transform: (json: any) => any = noTransform): Observable<any> {
     if (!this.accessTokenExpired()) {
-      var headers = new HttpHeaders();
-      headers.set('Content-Type', 'application/json; charset=utf-8');
-
-      return this.authHttp.post(environment.url + url, body, { headers })
+      // var token = localStorage.getItem('AUTH_USER_ACCESS_TOKEN')
+      // var headers = new HttpHeaders();
+      // headers.set('Content-Type', 'application/json; charset=utf-8');
+      // headers.set('Authorization' , `Bearer ${token}`);
+      return this.authHttp.post(environment.url + url, body, httpOptions)
         .pipe(map(this.extractData), map(transform), catchError(this.handleError));
 
       // .map(this.extractObject)
@@ -194,7 +206,7 @@ export abstract class BaseAuthService {
     console.log(httpErrorResponse);    
     if (httpErrorResponse instanceof HttpErrorResponse) {
       // client-side error
-      errorMessage = httpErrorResponse.error.error;
+      errorMessage = httpErrorResponse.error.message || httpErrorResponse.error.error;
     } else {
       // server-side error
       errorMessage = `Error Code: ${httpErrorResponse.status}\nMessage: ${httpErrorResponse.error.error}`;
@@ -214,4 +226,11 @@ export abstract class BaseAuthService {
    .map(transform)
    .catch(this.handleError);
    }*/
+}
+function setHeaders()
+{
+  var headers = new HttpHeaders();
+  headers.set('Content-Type', 'application/json; charset=utf-8');
+  headers.set('Authorization' , `Bearer ${this.token}`) 
+   
 }

@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
    
      this.authService.loginUser( form.value).subscribe(data => {
       console.log(data)
-      this.router.navigate(['super-admin/profile-home']); 
+      this.toastr.success('Welcome ' + data.name, 'Success!');
+      this.router.navigate(['dashboard']); 
       // if (data.roleId == RolesEnum.Admin) {
       //   this.authService.navigateUser(data);      
       // } else {

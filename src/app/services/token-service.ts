@@ -7,6 +7,7 @@ export class TokenService {
   public static AUTH_USER_PROFILE_NAME_KEY: string = "AUTH_USER_PROFILE_NAME";
   public static AUTH_USER_PROFILE_OTHER_KEY: string = "AUTH_USER_OTHER_NAME";
   public static AUTH_USER_ROLE_ID_KEY: string = "AUTH_USER_ROLE_ID";
+  public static AUTH_USER_EMAIL_ID_KEY: string = "AUTH_USER_EMAIL_ID";
   public static PAGE_URL: string = "PAGE_URL";
 
   getItem(key: string): string {

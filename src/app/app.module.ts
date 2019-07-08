@@ -19,17 +19,21 @@ import { RouterModule } from "@angular/router";
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { AppSuperAdminComponent } from "./master-module/app-superadmin.component";
-import {LoginMenuComponent} from "./auth/login-menu.component";
  
- 
+//Module 
 import { MenuFooterModule } from "./menu-footer/menu-footer.module";
 import { AppRoutingModule } from "./app.routing";
 
+//Component
+import { AppComponent } from './app.component';
+import { MainMenuComponent } from "./main-component/main-menu.component";
+import {LoginMenuComponent} from "./auth/login-menu.component";
+
+//Service
 import { SuperAdminAuthGuard } from "./guards/superadminauth-guard.service";
 import { AuthService } from "./auth/auth.service";
+import { CommonValidationService } from "./services/common-validation.service";
+ 
 // import {CommonValidationService} from "./guards/common-validation.service";
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -49,7 +53,7 @@ export function jwtOptionsFactory(tokenService) {
 @NgModule({
   declarations: [
     AppComponent ,
-    AppSuperAdminComponent,
+    MainMenuComponent,
     LoginMenuComponent 
   ],
   imports: [
@@ -58,13 +62,10 @@ export function jwtOptionsFactory(tokenService) {
     RouterModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    // AuthModule,
-    // AppSuperAdminModule,
+    HttpClientModule,  
     ToastrModule.forRoot(),
     AppRoutingModule,
-    MenuFooterModule,
-     
+    MenuFooterModule,     
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
@@ -73,11 +74,10 @@ export function jwtOptionsFactory(tokenService) {
       }
     })
   ],
-  providers: [
- 
+  providers: [ 
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     TokenService, SweetAlertService, IdleTimeoutService,
-    ToastrService,SuperAdminAuthGuard,AuthService
+    ToastrService,SuperAdminAuthGuard,AuthService,CommonValidationService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]

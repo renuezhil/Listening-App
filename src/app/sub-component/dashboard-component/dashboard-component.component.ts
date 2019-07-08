@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DashboardService } from "./dashboard.service";
+import { ToastrService } from "../../services/toastr.service";
 @Component({
   selector: 'app-dashboard-component',
   templateUrl: './dashboard-component.component.html',
@@ -7,9 +9,75 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dashboardservice: DashboardService, private toastr: ToastrService) { }
+  videoList: any = [];
+  tempData: any = [];
+  newVideoList : any =[];
+  trendingVideoList : any =[];
+  mostWatchedVideoList : any =[];
+  watchedVideoList :any =[];
 
   ngOnInit() {
+    // this.getvideoCategory();
+    this.getVideos();
+  }
+
+  getVideos() {
+    this.dashboardservice.getdashboardMostWatchedVideos().subscribe(
+      (data) => {        
+        this.createRowData(data,"Most Watched Video");
+      },
+      err => this.toastr.error(err, "Error!"))
+    error => this.toastr.error(error, "Error!")     
+
+    // this.dashboardservice.getdashboardNewVideos().subscribe(
+    //   (data) => {        
+    //     this.createRowData(data,"Latest Video");
+    //   },
+    //   err => this.toastr.error(err, "Error!"))
+    // error => this.toastr.error(error, "Error!")
+
+    // this.dashboardservice.getdashboardTrendingVideos().subscribe(
+    //   (data) => {        
+    //     this.createRowData(data,"Trending Video");
+    //   },
+    //   err => this.toastr.error(err, "Error!"))
+    // error => this.toastr.error(error, "Error!")
+
+  }
+  createRowData(data,heading) {
+    var rowData: any[] = [];
+    var RefData = [];
+    RefData = data;
+    console.log(data);
+    for (var i = 0; i < data.data.length; i++) {
+      this.videoList.push({
+        rowid: i + 1,
+        headingname :heading,
+        current_page: data.current_page,
+        total: data.total,       
+        id: data.data[i].id,
+        category_id : data.data[i].category_id,  
+        
+        videos :[
+          {
+            type: "video/mp4",
+            public_url:  data.data[i].public_url,
+            title: data.data[i].title,
+            description: data.data[i].description,
+            views: data.data[i].views,
+          }
+        ]
+        // public_url: "https://devapps.efficience.us/listeningApp/public/api"+data.data[i].public_url,
+      });
+    }
+    // this.videoList = rowData;
+  console.log("------\n"+this.videoList[0].videos);
+  } 
+
+  getViewVideosId(vidoeid)
+  {
+    alert(vidoeid);
   }
   catogiry: any = [{
     name: "Recently Watched",
@@ -172,7 +240,7 @@ export class DashboardComponentComponent implements OnInit {
       }
 
     }
-    ,
+      ,
     {
       watched_persentage: 33,
       type: "video/mp4",
@@ -193,7 +261,7 @@ export class DashboardComponentComponent implements OnInit {
       }
 
     }
-    ,
+      ,
     {
       watched_persentage: 33,
       type: "video/mp4",
@@ -214,7 +282,7 @@ export class DashboardComponentComponent implements OnInit {
       }
 
     }
-    ,
+      ,
     {
       watched_persentage: 33,
       type: "video/mp4",
@@ -235,7 +303,7 @@ export class DashboardComponentComponent implements OnInit {
       }
 
     }
-    ,
+      ,
     {
       watched_persentage: 33,
       type: "video/mp4",
@@ -256,7 +324,7 @@ export class DashboardComponentComponent implements OnInit {
       }
 
     }
-    ,
+      ,
     {
       watched_persentage: 33,
       type: "video/mp4",
@@ -277,7 +345,7 @@ export class DashboardComponentComponent implements OnInit {
       }
 
     }
-    ,
+      ,
     {
       watched_persentage: 33,
       type: "video/mp4",
